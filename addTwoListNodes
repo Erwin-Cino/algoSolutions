@@ -1,0 +1,42 @@
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+ var addTwoNumbers = function(l1, l2) {
+    function ConvertReverseListNodeToArray(listNode) {
+        // Initialise an array to return
+        let returnedArray = [];
+
+        if (listNode.next) {
+            returnedArray = returnedArray.concat(
+                ConvertReverseListNodeToArray(listNode.next)
+            );
+        }
+
+        // Add the current node's value to the returned array
+        returnedArray.push(listNode.val);
+
+        // Return the constructed array
+        return returnedArray;
+    }
+    
+    const firstNumber = BigInt(ConvertReverseListNodeToArray(l1).join(''))
+    const secondNumber = BigInt(ConvertReverseListNodeToArray(l2).join(''))
+    const outputNumber = firstNumber + secondNumber;
+    let outputListNode = null
+     for (let i = 0; i < outputNumber.toString().length; i++) {
+         outputListNode = {
+            val: BigInt(outputNumber.toString()[i]),
+            next: outputListNode,
+         }
+    }
+    return outputListNode;
+};
