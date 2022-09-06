@@ -7,11 +7,7 @@ function firstNonRepeatingLetter(s) {
   smallLetters.forEach((letter, index, self) => {
     const selfCopy = [...self]
     selfCopy.splice(selfCopy.indexOf(letter), 1);
-    if (selfCopy.includes(letter)) {
-      arrayBool.push(false)
-    } else {
-      arrayBool.push(true)
-    }
+    arrayBool.push(selfCopy.includes(letter))
   })
   if (arrayBool.includes(true)) {
     return letters[arrayBool.indexOf(true)]
